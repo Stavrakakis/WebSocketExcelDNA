@@ -61,6 +61,5 @@ C:\nstavrakakis\WebSocketExcelDNA\ExcelDNA\bin\Debug\System.Reactive.Interfaces.
 C:\nstavrakakis\WebSocketExcelDNA\ExcelDNA\bin\Debug\System.Reactive.Linq.xml
 C:\nstavrakakis\WebSocketExcelDNA\ExcelDNA\bin\Debug\System.Reactive.PlatformServices.xml
 C:\nstavrakakis\WebSocketExcelDNA\ExcelDNA\bin\Debug\WebSocket4Net.pdb
-C:\nstavrakakis\WebSocketExcelDNA\ExcelDNA\obj\Debug\ExcelDNA.csprojResolveAssemblyReference.cache
 C:\nstavrakakis\WebSocketExcelDNA\ExcelDNA\obj\Debug\ExcelDNA.dll
 C:\nstavrakakis\WebSocketExcelDNA\ExcelDNA\obj\Debug\ExcelDNA.pdb

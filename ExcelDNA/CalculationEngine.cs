@@ -37,21 +37,6 @@ namespace ExcelDNA
         }
         
 
-        // event boilerplate stuff
-        public delegate void ValueSentHandler(ValueSentEventArgs args);
-        public static event ValueSentHandler OnValueSent;
-        public class ValueSentEventArgs : EventArgs
-        {
-            public double Calculation { get; private set; }
-            
-            public ValueSentEventArgs(double calculation)
-            {
-                this.Calculation = calculation;
-            }
-        }
-
-        
-
         public static event TimeSentHandler OnTimeSent;
         public delegate void TimeSentHandler(TimeSentEventArgs args);        
         public class TimeSentEventArgs : EventArgs
@@ -64,47 +49,27 @@ namespace ExcelDNA
             }
         }
 
-
-        [ExcelFunction(Description = "Test Calculation")]
-        public static object Calculate(int input)
+        public class ValueSentEventArgs : EventArgs
         {
-            socket.On("calculation", (data) =>
+            public double Calculation { get; private set; }
+
+            public ValueSentEventArgs(double calculation)
             {
-                ValueSentEventArgs value = data.Json.GetFirstArgAs<ValueSentEventArgs>();
-
-                if (OnValueSent != null)
-                    OnValueSent(value);
-            });
-
-
-            Func<IObservable<double>> f2 = () => Observable.Create<double>(CalculationObservable);
-
-
-            return RxExcel.Observe("Calculate", null, f2);
+                this.Calculation = calculation;
+            }
         }
 
         [ExcelFunction(Description = "Test Calculation")]
-        public static object GetTime()
+        public static object Calculate(String feed)
         {
-            socket.On("time", (data) =>
-            {
-                TimeSentEventArgs value = data.Json.GetFirstArgAs<TimeSentEventArgs>();
+            Func<IObservable<double>> f2 = () => Observable.Create<double>(CalculationObservable);
 
-                if (OnTimeSent != null)
-                    OnTimeSent(value);
-            });
-
-
-            Func<IObservable<DateTime>> f2 = () => Observable.Create<DateTime>(TimeObservable);
-
-
-            return RxExcel.Observe("GetTime", null, f2);
+            return RxExcel.Observe("Calculate", feed, f2, socket, feed);
         }
 
 
         static Func<IObserver<double>, IDisposable> CalculationObservable = observer =>
         {
-            OnValueSent += d => observer.OnNext(d.Calculation);   
             return Disposable.Empty;                        
         };
 

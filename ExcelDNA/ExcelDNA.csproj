@@ -78,9 +78,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy "c:\Users\nstavrakakis\documents\visual studio 2013\Projects\ExcelDNA\packages\Excel-DNA.0.32.0\tools\ExcelDna.xll" "$(TargetDir)ExcelDNA-AddIn.xll*" /C /Y
+    <PostBuildEvent>xcopy "C:\nstavrakakis\WebSocketExcelDNA\packages\Excel-DNA.0.32.0\tools\ExcelDna.xll" "$(TargetDir)ExcelDNA-AddIn.xll*" /C /Y
 xcopy "$(TargetDir)ExcelDNA-AddIn.dna*" "$(TargetDir)ExcelDNA-AddIn64.dna*" /C /Y
-xcopy "c:\Users\nstavrakakis\documents\visual studio 2013\Projects\ExcelDNA\packages\Excel-DNA.0.32.0\tools\ExcelDna64.xll" "$(TargetDir)ExcelDNA-AddIn64.xll*" /C /Y
+xcopy "C:\nstavrakakis\WebSocketExcelDNA\packages\Excel-DNA.0.32.0\tools\ExcelDna64.xll" "$(TargetDir)ExcelDNA-AddIn64.xll*" /C /Y
 "c:\Users\nstavrakakis\documents\visual studio 2013\Projects\ExcelDNA\packages\Excel-DNA.0.32.0\tools\ExcelDnaPack.exe" "$(TargetDir)ExcelDNA-AddIn.dna" /Y
 "c:\Users\nstavrakakis\documents\visual studio 2013\Projects\ExcelDNA\packages\Excel-DNA.0.32.0\tools\ExcelDnaPack.exe" "$(TargetDir)ExcelDNA-AddIn64.dna" /Y</PostBuildEvent>
   </PropertyGroup>

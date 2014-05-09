@@ -1,5 +1,7 @@
 
 server/node_modules
+ExcelDNA/bin
+ExcelDNA/obj
 
 node_modules
 =======

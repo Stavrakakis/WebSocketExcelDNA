@@ -13,9 +13,19 @@ namespace ExcelDNA
             return new ExcelObservable<T>(observable, socket, feed);
         }
 
-        public static object Observe<T>(string functionName, object parameters, Func<IObservable<T>> observableSource, Client socket, string feed)
+        public static object Observe<T>(string functionName, object parameters, Func<IObservable<T>> observableSource, Client socket)
         {
-            return ExcelAsyncUtil.Observe(functionName, parameters, () => observableSource().ToExcelObservable(socket, feed));
+            return ExcelAsyncUtil.Observe(functionName, parameters, () => observableSource().ToExcelObservable(socket, (string) parameters));
+        }
+    }
+
+    public class ValueSentEventArgs : EventArgs
+    {
+        public double Calculation { get; private set; }
+
+        public ValueSentEventArgs(double calculation)
+        {
+            this.Calculation = calculation;
         }
     }
 
@@ -31,30 +41,15 @@ namespace ExcelDNA
             _feed = feed;
             _socket = socket;
             _observable = observable;
-        }
-
-        // event boilerplate stuff
-        public delegate void ValueSentHandler(ValueSentEventArgs args);
-        public static event ValueSentHandler OnValueSent;
-        public class ValueSentEventArgs : EventArgs
-        {
-            public double Calculation { get; private set; }
-
-            public ValueSentEventArgs(double calculation)
-            {
-                this.Calculation = calculation;
-            }
-        }
+        }        
 
         public IDisposable Subscribe(IExcelObserver observer)
         {
-
             _socket.On(_feed, (data) =>
             {
                 ValueSentEventArgs value = data.Json.GetFirstArgAs<ValueSentEventArgs>();
                 
                 observer.OnNext(value.Calculation);
-
             });
 
             return _observable.Subscribe(value => observer.OnNext(value), observer.OnError, observer.OnCompleted);

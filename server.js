@@ -4,6 +4,7 @@ var h = 1;
 var broadcastTime = function(){
 
     var date = new Date();
+    console.log('time');
     io.sockets.emit('message', {value: date});
 }
 

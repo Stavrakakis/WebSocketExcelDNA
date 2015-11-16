@@ -3,6 +3,6 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <StartAction>Program</StartAction>
     <StartProgram>C:\Program Files\Microsoft Office 15\Root\Office15\EXCEL.EXE</StartProgram>
-    <StartArguments>"C:\nstavrakakis\WebSocketExcelDNA\ExcelDNA\bin\Debug\ExcelDNA-AddIn.xll"</StartArguments>
+    <StartArguments>"C:\work\WebSocketExcelDNA\ExcelDNA\bin\Debug\ExcelDNA-AddIn.xll"</StartArguments>
   </PropertyGroup>
 </Project>
